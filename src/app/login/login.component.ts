@@ -3,6 +3,7 @@ import { AuthService } from '../Services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { AuthResponse } from '../Model/AuthResponse';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,11 +16,12 @@ export class LoginComponent implements OnInit {
 
   errorMessage: string | null = null;
   authObs!: Observable<AuthResponse>;
+
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -39,6 +41,8 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         console.log(res);
         this.isLoading = false;
+        //redirect the user after login
+        this.router.navigate(['/Tasks']);
       },
       error: (errMsg) => {
         this.isLoading = false;

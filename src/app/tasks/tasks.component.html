@@ -1,0 +1,9 @@
+<p>tasks works!</p>
+<form action="toDo">
+  <input type="text" name="toDo" id="toDo" />
+  <button (click)="posttaks(toDo)" type="submit">Subtit</button>
+</form>
+
+<div>
+  <p *ngFor="let task of tasks">{{ task }}</p>
+</div>

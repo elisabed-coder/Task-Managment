@@ -43,7 +43,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponse } from '../Model/AuthResponse';
-import { Observable, Subject, catchError, tap, throwError } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  Subject,
+  catchError,
+  tap,
+  throwError,
+} from 'rxjs';
 import { User } from '../Model/User';
 
 @Injectable({
@@ -51,7 +58,8 @@ import { User } from '../Model/User';
 })
 export class AuthService {
   // error: string | null = null;
-  user = new Subject<User>();
+  //one extra feature which behavioralsubject provcies is that also gives aus previous emitted data, so we'll also have access to previously emitted data
+  user = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -81,7 +89,7 @@ export class AuthService {
     };
     return this.http
       .post<AuthResponse>(
-        'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAA7TiEOwRrkjGL5W5CFCKQA2sWg-vRO1k',
+        'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAA7TiEOwRrkjGL5W5CFCKQA2sWg-vRO1k',
         data
       )
       .pipe(
