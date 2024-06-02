@@ -4,6 +4,6 @@
     <a href="">HOME</a>
     <a href="" *ngIf="isLoggedIn">TASKS</a>
     <a href="" *ngIf="!isLoggedIn">LOGIN</a>
-    <a href="" *ngIf="isLoggedIn">LOGOUT</a>
+    <a href="" *ngIf="isLoggedIn" (click)="logOut()">LOGOUT</a>
   </div>
 </nav>

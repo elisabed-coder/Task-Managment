@@ -1,9 +1,7 @@
-<p>tasks works!</p>
-<form action="toDo">
-  <input type="text" name="toDo" id="toDo" />
-  <button (click)="posttaks(toDo)" type="submit">Subtit</button>
+<form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
+  <input type="text" name="toDo" [(ngModel)]="toDo" required />
+  <button type="submit" [disabled]="taskForm.invalid">Submit</button>
 </form>
-
 <div>
-  <p *ngFor="let task of tasks">{{ task }}</p>
+  <p *ngFor="let task of tasks">{{ task.toDo }}</p>
 </div>

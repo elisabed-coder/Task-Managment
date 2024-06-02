@@ -1,57 +1,9 @@
-// import { HttpClient } from '@angular/common/http';
-// import { Injectable } from '@angular/core';
-// import { AuthResponse } from '../Model/AuthResponse';
-// import { Observable, catchError, throwError } from 'rxjs';
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class AuthService {
-//   error: string | null = null;
-//   constructor(private http: HttpClient) {}
-//   signup(
-//     email: string,
-//     password: string,
-//     returnSecureToken: true
-//   ): Observable<AuthResponse> {
-//     const data = {
-//       email: email,
-//       password: password,
-//     };
-//     return this.http
-//       .post<AuthResponse>(
-//         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAA7TiEOwRrkjGL5W5CFCKQA2sWg-vRO1k',
-//         data
-//       )
-//       .pipe(
-//         catchError((err) => {
-//           let erroMessage = 'An unkown error happened';
-//           if (!err.error || !err.error.error) {
-//             return throwError(() => erroMessage);
-//           }
-//           switch (err.error.error.message) {
-//             case 'EMAIL_EXISTS':
-//               this.error = 'This email already exists';
-
-//               break;
-//           }
-//           throwError(() => err);
-//         })
-//       );
-//   }
-// }
-
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponse } from '../Model/AuthResponse';
-import {
-  BehaviorSubject,
-  Observable,
-  Subject,
-  catchError,
-  tap,
-  throwError,
-} from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from '../Model/User';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -61,7 +13,7 @@ export class AuthService {
   //one extra feature which behavioralsubject provcies is that also gives aus previous emitted data, so we'll also have access to previously emitted data
   user = new BehaviorSubject<User | null>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signup(email: string, password: string): Observable<AuthResponse> {
     const data = {
@@ -81,7 +33,7 @@ export class AuthService {
         })
       );
   }
-  login(email: String, password: string) {
+  login(email: String, password: string): Observable<AuthResponse> {
     const data = {
       email: email,
       password: password,
@@ -112,6 +64,44 @@ export class AuthService {
     const user = new User(res.email, res.localId, res.idToken, expiresIn);
     //this user will be emitted  eith subject(next), it can be accessed anywhere in application
     this.user.next(user);
+    console.log('this is user' + user);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  logOut() {
+    this.user.next(null);
+    this.router.navigate(['login']);
+    // clear user data from localstorage
+    localStorage.removeItem('user');
+  }
+
+  autoLogin() {
+    const userDataString = localStorage.getItem('user');
+    if (!userDataString) {
+      return;
+    }
+
+    const userData: {
+      email: string;
+      id: string;
+      _token: string;
+      _expiresIn: string;
+    } = JSON.parse(userDataString);
+
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._expiresIn)
+    );
+
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+    }
   }
 
   // handle error
