@@ -6,6 +6,7 @@ import { User } from '../Model/User';
 import { NgForm } from '@angular/forms';
 import { TaskService } from '../Services/tasks.service';
 import { Task } from '../Model/Task';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -13,27 +14,41 @@ import { Task } from '../Model/Task';
   styleUrls: ['./tasks.component.scss'],
 })
 export class TasksComponent implements OnInit {
-  tasks: Task[] = [];
+  showCreateTaskForm: boolean = false;
+  showEditTaskForm: boolean = false;
+  currentTaskId: string = '';
+  selectedTask: Task | undefined;
 
+  tasks: Task[] = [];
   toDo!: string;
   constructor(
     private authService: AuthService,
 
-    private taskService: TaskService
+    private taskService: TaskService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.FetchTasks();
   }
 
-  createTask(data: NgForm) {
-    const newTask = data.value;
-    this.taskService.createTask(newTask).subscribe({
-      next: () => {
-        this.FetchTasks(); // Refresh the task list after creating a new task
-        data.reset(); // Reset the form after task creation
-      },
-      error: (err) => console.error('Error creating task:', err),
+  handleCreateTask(task: Task) {
+    // Retrieve the current user from AuthService
+    this.authService.user.pipe(take(1)).subscribe((user) => {
+      if (user) {
+        // Assign the user's full name to the createdBy property of the task
+        task.author = user.email; // Ensure user.fullName is defined
+        console.log('Received task data:', task);
+        // Call createTask with the updated task object
+        this.taskService.createTask(task).subscribe({
+          next: () => {
+            console.log('Task created successfully');
+            // Optionally refresh the task list or perform other actions
+            this.FetchTasks();
+          },
+          error: (err) => console.error('Error creating task:', err),
+        });
+      }
     });
   }
 
@@ -45,6 +60,25 @@ export class TasksComponent implements OnInit {
       },
       error: (err) => console.error('Error:', err),
     });
+  }
+
+  openCreateTask() {
+    this.showCreateTaskForm = true;
+  }
+  CloseCreateTaskForm() {
+    // this.showCreateTaskForm = false;
+  }
+
+  OnEditTaskClicked(id: string | undefined) {
+    if (id) {
+      this.currentTaskId = id;
+      // this.showEditTaskForm = true;
+
+      this.selectedTask = this.tasks.find((task) => {
+        task.id === id;
+      });
+      this.router.navigate(['EditTask', id]);
+    }
   }
 
   // getAllTasks() {

@@ -1,7 +1,29 @@
-<form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
-  <input type="text" name="toDo" [(ngModel)]="toDo" required />
-  <button type="submit" [disabled]="taskForm.invalid">Submit</button>
-</form>
-<div>
-  <p *ngFor="let task of tasks">{{ task.toDo }}</p>
+<!-- <form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
+  <div>
+    <input type="text" name="toDo" [(ngModel)]="toDo" required />
+    <button type="submit" [disabled]="taskForm.invalid">Submit</button>
+  </div>
+  <div class="select-box">
+    <select name="status" ngModel>
+      <option hidden>Status</option>
+      <option value="open">Open</option>
+      <option value="started">Started</option>
+      <option value="in-progress">In Progress</option>
+      <option value="complete">Complete</option>
+    </select>
+  </div>
+</form> -->
+<app-create-task
+  *ngIf="showCreateTaskForm"
+  (EmitTaskData)="handleCreateTask($event)"
+></app-create-task>
+<button (click)="openCreateTask()">Create Task</button>
+<div *ngFor="let task of tasks" (click)="OnEditTaskClicked(task.id)">
+  <p>Task:{{ task.toDo }}</p>
+  <p>author:{{ task.author }}</p>
+  <p>status:{{ task.status }}</p>
+</div>
+
+<div *ngFor="let task of tasks">
+  {{ task | json }}
 </div>

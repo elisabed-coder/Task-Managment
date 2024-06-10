@@ -1,0 +1,34 @@
+<button (click)="goBack()">Go Back to Tasks</button>
+<div *ngIf="task">
+  <p>Task:{{ task.toDo }}</p>
+  <p>author:{{ task.author }}</p>
+  <p>status:{{ task.status }}</p>
+  <label for="status">Change Status:</label>
+  <select id="status" [(ngModel)]="task.status">
+    <option value="Pending">Pending</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Completed">Completed</option>
+  </select>
+  <button (click)="updateTaskStatus()">Save the Changes</button>
+</div>
+
+<div class="add-comment">
+  <h3>Add Comment</h3>
+  <form (ngSubmit)="onAddComment()">
+    <textarea [(ngModel)]="commentText" name="comment" required></textarea>
+    <button type="submit">Add Comment</button>
+  </form>
+</div>
+
+<div class="comments" *ngIf="task && task.commentsArray">
+  <h3>Comments</h3>
+  <div *ngFor="let comment of task.commentsArray">
+    <p>
+      {{ comment.text }} by {{ comment.author }} on
+      {{ comment.date | date }}
+    </p>
+  </div>
+</div>
+<div *ngIf="!task">
+  <app-loader></app-loader>
+</div>

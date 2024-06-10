@@ -12,6 +12,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { Router } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
+import { CreateTaskComponent } from './tasks/create-task/create-task.component';
+import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,8 @@ import { AuthInterceptorService } from './Services/auth-interceptor.service';
     SnackbarComponent,
     TasksComponent,
     HeaderComponent,
+    CreateTaskComponent,
+    EditTaskComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [

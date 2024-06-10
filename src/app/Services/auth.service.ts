@@ -4,12 +4,12 @@ import { AuthResponse } from '../Model/AuthResponse';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from '../Model/User';
 import { Route, Router } from '@angular/router';
+import { TaskService } from './tasks.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  // error: string | null = null;
   //one extra feature which behavioralsubject provcies is that also gives aus previous emitted data, so we'll also have access to previously emitted data
   user = new BehaviorSubject<User | null>(null);
 
@@ -21,6 +21,7 @@ export class AuthService {
       password: password,
       returnSecureToken: true,
     };
+    // console.log(data);
     return this.http
       .post<AuthResponse>(
         'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAA7TiEOwRrkjGL5W5CFCKQA2sWg-vRO1k',
@@ -33,6 +34,7 @@ export class AuthService {
         })
       );
   }
+
   login(email: String, password: string): Observable<AuthResponse> {
     const data = {
       email: email,
@@ -64,13 +66,12 @@ export class AuthService {
     const user = new User(res.email, res.localId, res.idToken, expiresIn);
     //this user will be emitted  eith subject(next), it can be accessed anywhere in application
     this.user.next(user);
-    console.log('this is user' + user);
     localStorage.setItem('user', JSON.stringify(user));
   }
 
   logOut() {
     this.user.next(null);
-    this.router.navigate(['login']);
+    this.router.navigate(['/login']);
     // clear only user data from localstorage
     localStorage.removeItem('user');
   }
@@ -113,13 +114,13 @@ export class AuthService {
     }
     switch (err.error.error.message) {
       case 'EMAIL_EXISTS':
-        errorMessage = 'This email already exists';
+        errorMessage = 'This email already exists.';
         break;
-      case 'EMAIL_NOT_FOUND':
-        errorMessage = ' This email does not exist';
+      case 'OPERATION_NOT_ALLOWED':
+        errorMessage = 'This operation is not allowed.';
         break;
-      case 'INVALID_PASSWORD ':
-        errorMessage = 'The password is invalid';
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = 'The email ID or Password is not correct.';
         break;
       // case 'INVALID_LOGIN_CREDENTIALS':
       //   errorMessage = 'The email ID or Password is not correct';

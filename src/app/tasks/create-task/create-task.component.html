@@ -1,0 +1,17 @@
+<form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
+  <div>
+    <label for="toDo">To Do</label>
+    <input type="text" id="toDo" name="toDo" ngModel required />
+  </div>
+  <div class="select-box">
+    <label for="status">Status</label>
+    <select id="status" name="status" ngModel>
+      <option hidden>Status</option>
+      <option value="open">Open</option>
+      <option value="started">Started</option>
+      <option value="in-progress">In Progress</option>
+      <option value="complete">Complete</option>
+    </select>
+  </div>
+  <button type="submit" [disabled]="taskForm.invalid">Create Task</button>
+</form>
