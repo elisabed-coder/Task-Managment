@@ -15,6 +15,9 @@ export class EditTaskComponent implements OnInit {
   task: any;
   commentText: string = '';
 
+  consoleMessage: string = '';
+  showConsoleMessage: boolean = false;
+
   constructor(
     private route: ActivatedRoute,
     private taskService: TaskService,
@@ -82,9 +85,10 @@ export class EditTaskComponent implements OnInit {
       console.log(this.task);
       this.taskService.updateTask(this.task, this.taskId).subscribe(
         (updatedTask) => {
-          console.log('Task status updated successfully:', updatedTask);
-          // Optionally, update local task object with the updated one
-          this.task = updatedTask;
+          ((this.consoleMessage = 'Task status updated successfully:'),
+          (this.showConsoleMessage = true)),
+            // Optionally, update local task object with the updated one
+            (this.task = updatedTask);
         },
         (error) => {
           console.error('Error updating task status:', error);

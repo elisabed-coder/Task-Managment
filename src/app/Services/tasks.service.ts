@@ -96,4 +96,18 @@ export class TaskService {
       })
     );
   }
+
+  deleteTask(taskId: string): Observable<Task> {
+    return this.authService.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        if (!user) {
+          throw new Error('User not authenticated');
+        }
+        return this.http.delete<Task>(
+          `https://registrationform-87b3e-default-rtdb.firebaseio.com/tasks/${taskId}.json?auth=${user.token}`
+        );
+      })
+    );
+  }
 }

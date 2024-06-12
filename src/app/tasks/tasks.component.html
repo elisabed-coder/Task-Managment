@@ -1,29 +1,38 @@
-<!-- <form (ngSubmit)="createTask(taskForm)" #taskForm="ngForm">
-  <div>
-    <input type="text" name="toDo" [(ngModel)]="toDo" required />
-    <button type="submit" [disabled]="taskForm.invalid">Submit</button>
+<app-create-task
+  *ngIf="showCreateTaskForm"
+  (EmitTaskData)="handleCreateTask($event)"
+  (CloseForm)="CloseCreateTaskForm()"
+></app-create-task>
+<button (click)="openCreateTask()">Create new Task</button>
+<div class="task-container">
+  <div style="text-align: center" *ngIf="filteredTasks.length < 1">
+    <h2>No task has been created yet!</h2>
   </div>
-  <div class="select-box">
-    <select name="status" ngModel>
-      <option hidden>Status</option>
+
+  <div
+    *ngFor="let task of filteredTasks"
+    class="task-box"
+    [ngClass]="'task-' + task.status"
+  >
+    <p>Task:{{ task.name }}</p>
+    <p>author:{{ task.author }}</p>
+    <p>status:{{ task.status }}</p>
+    <p>date: {{ task.date }}</p>
+    <button (click)="OnEditTaskClicked(task.id)">details</button>
+    <button (click)="DeleTeTask(task.id)">Delete Task</button>
+  </div>
+  <div>
+    <select [(ngModel)]="selectedStatus" (change)="filterTasks()">
+      <option value="">All</option>
       <option value="open">Open</option>
       <option value="started">Started</option>
       <option value="in-progress">In Progress</option>
       <option value="complete">Complete</option>
     </select>
+    <button>FILTER</button>
+    <span>Filtered Tasks: {{ filteredTaskCount }}</span>
   </div>
-</form> -->
-<app-create-task
-  *ngIf="showCreateTaskForm"
-  (EmitTaskData)="handleCreateTask($event)"
-></app-create-task>
-<button (click)="openCreateTask()">Create Task</button>
-<div *ngFor="let task of tasks" (click)="OnEditTaskClicked(task.id)">
-  <p>Task:{{ task.toDo }}</p>
-  <p>author:{{ task.author }}</p>
-  <p>status:{{ task.status }}</p>
 </div>
-
-<div *ngFor="let task of tasks">
+<!-- <div *ngFor="let task of tasks">
   {{ task | json }}
-</div>
+</div> -->

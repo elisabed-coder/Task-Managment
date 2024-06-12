@@ -21,9 +21,13 @@ export class TasksComponent implements OnInit {
 
   tasks: Task[] = [];
   toDo!: string;
+
+  filteredTasks: Task[] = [];
+  selectedStatus: string = '';
+  filteredTaskCount: number = 0;
+
   constructor(
     private authService: AuthService,
-
     private taskService: TaskService,
     private router: Router
   ) {}
@@ -56,6 +60,8 @@ export class TasksComponent implements OnInit {
     this.taskService.getAlltasks().subscribe({
       next: (tasks) => {
         this.tasks = tasks;
+        this.filteredTasks = [...tasks];
+        this.filteredTaskCount = this.filteredTasks.length;
         console.log('Tasks:', this.tasks);
       },
       error: (err) => console.error('Error:', err),
@@ -66,7 +72,7 @@ export class TasksComponent implements OnInit {
     this.showCreateTaskForm = true;
   }
   CloseCreateTaskForm() {
-    // this.showCreateTaskForm = false;
+    this.showCreateTaskForm = false;
   }
 
   OnEditTaskClicked(id: string | undefined) {
@@ -78,6 +84,31 @@ export class TasksComponent implements OnInit {
         task.id === id;
       });
       this.router.navigate(['EditTask', id]);
+    }
+  }
+
+  filterTasks() {
+    if (this.selectedStatus) {
+      this.filteredTasks = this.tasks.filter(
+        (task) => task.status === this.selectedStatus
+      );
+    } else {
+      this.filteredTasks = [...this.tasks]; // Create a new array reference
+    }
+    this.filteredTaskCount = this.filteredTasks.length;
+  }
+
+  DeleTeTask(id: string | undefined) {
+    if (id) {
+      this.taskService.deleteTask(id).subscribe({
+        next: () => {
+          console.log('task deleted successfully');
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+      this.FetchTasks();
     }
   }
 

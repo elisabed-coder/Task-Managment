@@ -4,11 +4,12 @@ import { TasksComponent } from './tasks/tasks.component';
 import { LoginComponent } from './login/login.component';
 import { CreateTaskComponent } from './tasks/create-task/create-task.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { canActivate } from './RouteGuards/authGuard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'Tasks', component: TasksComponent },
+  { path: 'Tasks', component: TasksComponent, canActivate: [canActivate] },
   { path: 'CreateTask', component: CreateTaskComponent },
   { path: 'EditTask/:id', component: EditTaskComponent },
 ];

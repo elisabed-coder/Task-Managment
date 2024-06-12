@@ -14,6 +14,8 @@ import { HeaderComponent } from './header/header.component';
 import { AuthInterceptorService } from './Services/auth-interceptor.service';
 import { CreateTaskComponent } from './tasks/create-task/create-task.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
+import { ActionComponent } from './utility/action/action.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,8 +27,15 @@ import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
     HeaderComponent,
     CreateTaskComponent,
     EditTaskComponent,
+    ActionComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

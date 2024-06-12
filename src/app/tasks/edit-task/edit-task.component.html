@@ -1,12 +1,15 @@
 <button (click)="goBack()">Go Back to Tasks</button>
 <div *ngIf="task">
-  <p>Task:{{ task.toDo }}</p>
+  <p>Task:{{ task.name }}</p>
   <p>author:{{ task.author }}</p>
+  <p>Description:{{ task.description }}</p>
+  <p>priority:{{ task.priority }}</p>
   <p>status:{{ task.status }}</p>
   <label for="status">Change Status:</label>
   <select id="status" [(ngModel)]="task.status">
-    <option value="Pending">Pending</option>
-    <option value="In Progress">In Progress</option>
+    <option value="open">Open</option>
+    <option value="started">Started</option>
+    <option value="in-progress">In Progress</option>
     <option value="Completed">Completed</option>
   </select>
   <button (click)="updateTaskStatus()">Save the Changes</button>
@@ -32,3 +35,7 @@
 <div *ngIf="!task">
   <app-loader></app-loader>
 </div>
+<app-action
+  [consoleMessage]="consoleMessage"
+  *ngIf="showConsoleMessage"
+></app-action>
