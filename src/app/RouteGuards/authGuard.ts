@@ -1,4 +1,4 @@
-import { Inject, inject } from '@angular/core';
+import { inject } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
   Router,
@@ -16,15 +16,16 @@ export const canActivate = (
   | UrlTree
   | Promise<boolean | UrlTree>
   | Observable<boolean | UrlTree> => {
-  const authService = Inject(AuthService);
+  const authService = inject(AuthService);
   const route = inject(Router);
 
   return authService.user.pipe(
     take(1),
     map((user) => {
-      const loggeIn = user ? true : false;
+      const loggedIn = user ? true : false;
+      //   const loggedIn = !!user;
 
-      if (loggeIn) {
+      if (loggedIn) {
         return true;
       } else {
         return route.createUrlTree(['/login']);

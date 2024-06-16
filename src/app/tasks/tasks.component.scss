@@ -1,36 +1,96 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .create-task-btn {
+    margin-top: 20px;
+    width: 180px;
+    height: 50px;
+    border-radius: 20px;
+    background: #132743;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+  }
+}
 .task-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+  margin-left: 30px;
+  .task-box {
+    width: 275px;
+    height: 225px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background: #fff;
+    color: black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    font-size: 16px;
+    h2 {
+      text-align: center;
+      font-weight: 600;
+      font-size: 20px;
+    }
+    hr {
+      border: 1px solid rgba(0, 0, 0, 1);
+    }
+    div {
+      height: 80%;
+      margin-top: 15px;
+      p {
+        span {
+          font-weight: 500;
+        }
+      }
+    }
+    .fa-icons {
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      gap: 10px;
+      fa-icon {
+        font-size: 28px;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
-.task-box {
-  width: 200px;
-  height: 200px;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+.filterbox {
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: left;
-  padding: 20px;
+  gap: 5px;
+  select,
+  button,
+  span {
+    border: 2px solid rgb(0, 0, 0);
+    background-color: #fff;
+    color: rgb(0, 0, 0);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 5px;
+  }
 }
 
 .task-open {
-  border-top: 2px solid blue;
+  border-top: 10px solid #dd3e3e;
 }
 
 .task-started {
-  border-top: 2px solid orange;
+  border-top: 5px solid #ffd717;
 }
 
 .task-in-progress {
-  border-top: 2px solid orangered;
+  border-top: 5px solid #17139c;
 }
 
 .task-complete {
-  border-top: 2px solid green;
-}
-
-.task-box button {
-  align-self: center;
+  border-top: 5px solid #41a06f;
 }

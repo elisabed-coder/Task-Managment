@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100dvh;
+  margin: 0;
+}
+
+.whole-content {
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+}
+
+.header {
+  flex: 0 0 auto; /* Adjusts based on header content size */
+}
+
+.main-content {
+  flex: 1 0 auto; /* Takes up remaining space */
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content .main {
+  flex: 1;
+  background: #c0c5cd;
+  overflow: auto; /* Ensures that content is scrollable if too large */
+}
+
+.footer {
+  flex: 0 0 auto; /* Adjusts based on footer content size */
+}

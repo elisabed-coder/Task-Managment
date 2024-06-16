@@ -1,9 +1,11 @@
-<nav>
-  <h1>Task Managment</h1>
-  <div>
-    <a href="">HOME</a>
-    <a href="" *ngIf="isLoggedIn">TASKS</a>
-    <a href="" *ngIf="!isLoggedIn">LOGIN</a>
-    <a href="" *ngIf="isLoggedIn" (click)="logOut()">LOGOUT</a>
-  </div>
-</nav>
+<header>
+  <nav>
+    <h1>Task Managment</h1>
+    <div>
+      <a routerLink="/">HOME</a>
+      <a routerLink="/Tasks" *ngIf="isLoggedIn">TASKS</a>
+      <a routerLink="/login" *ngIf="!isLoggedIn">LOGIN</a>
+      <a *ngIf="isLoggedIn" (click)="logOut()">LOGOUT</a>
+    </div>
+  </nav>
+</header>

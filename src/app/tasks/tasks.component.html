@@ -1,38 +1,58 @@
-<app-create-task
-  *ngIf="showCreateTaskForm"
-  (EmitTaskData)="handleCreateTask($event)"
-  (CloseForm)="CloseCreateTaskForm()"
-></app-create-task>
-<button (click)="openCreateTask()">Create new Task</button>
-<div class="task-container">
-  <div style="text-align: center" *ngIf="filteredTasks.length < 1">
-    <h2>No task has been created yet!</h2>
+<section>
+  <app-create-task
+    *ngIf="showCreateTaskForm"
+    (EmitTaskData)="handleCreateTask($event)"
+    (CloseForm)="CloseCreateTaskForm()"
+  ></app-create-task>
+  <div *ngIf="!tasks">
+    <app-loader></app-loader>
   </div>
-
-  <div
-    *ngFor="let task of filteredTasks"
-    class="task-box"
-    [ngClass]="'task-' + task.status"
-  >
-    <p>Task:{{ task.name }}</p>
-    <p>author:{{ task.author }}</p>
-    <p>status:{{ task.status }}</p>
-    <p>date: {{ task.date }}</p>
-    <button (click)="OnEditTaskClicked(task.id)">details</button>
-    <button (click)="DeleTeTask(task.id)">Delete Task</button>
+  <div class="wrapper">
+    <button (click)="openCreateTask()" class="create-task-btn">
+      Create new Task
+    </button>
+    <div class="task-container">
+      <div style="text-align: center" *ngIf="filteredTasks.length < 1">
+        <h2>No task has been created yet!</h2>
+      </div>
+      <div
+        *ngFor="let task of filteredTasks"
+        class="task-box"
+        [ngClass]="'task-' + task.status"
+      >
+        <h2>{{ task.name }}</h2>
+        <hr />
+        <div>
+          <p><span>created by: </span>{{ task.author }}</p>
+          <p><span>status: </span>{{ task.status }}</p>
+          <p><span>date:</span> {{ task.date }}</p>
+        </div>
+        <div class="fa-icons">
+          <fa-icon
+            [icon]="faPen"
+            (click)="OnEditTaskClicked(task.id)"
+            class="faPen"
+          ></fa-icon>
+          <fa-icon [icon]="faTrash" (click)="DeleTeTask(task.id)"></fa-icon>
+        </div>
+      </div>
+      <div class="filterbox">
+        <select [(ngModel)]="selectedStatus" (change)="filterTasks()">
+          <option value="">All</option>
+          <option value="open">Open</option>
+          <option value="started">Started</option>
+          <option value="in-progress">In Progress</option>
+          <option value="complete">Complete</option>
+        </select>
+        <button>FILTER</button>
+        <span
+          >{{ selectedStatus === "" ? "All" : selectedStatus }}
+          {{ filteredTaskCount }}</span
+        >
+      </div>
+    </div>
   </div>
-  <div>
-    <select [(ngModel)]="selectedStatus" (change)="filterTasks()">
-      <option value="">All</option>
-      <option value="open">Open</option>
-      <option value="started">Started</option>
-      <option value="in-progress">In Progress</option>
-      <option value="complete">Complete</option>
-    </select>
-    <button>FILTER</button>
-    <span>Filtered Tasks: {{ filteredTaskCount }}</span>
-  </div>
-</div>
+</section>
 <!-- <div *ngFor="let task of tasks">
   {{ task | json }}
 </div> -->

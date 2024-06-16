@@ -16,6 +16,9 @@ import { CreateTaskComponent } from './tasks/create-task/create-task.component';
 import { EditTaskComponent } from './tasks/edit-task/edit-task.component';
 import { ActionComponent } from './utility/action/action.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { FooterComponent } from './footer/footer.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CreateTaskComponent,
     EditTaskComponent,
     ActionComponent,
+    HomeComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +40,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
+    FontAwesomeModule,
   ],
   providers: [
     {

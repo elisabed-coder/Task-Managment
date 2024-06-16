@@ -1,0 +1,13 @@
+main {
+  flex: 1;
+  padding: 65px;
+  overflow: auto; /* Ensures that content is scrollable if too large */
+  color: #000000;
+
+  h3 {
+    font-size: 22px;
+  }
+  p {
+    font-size: 18px;
+  }
+}

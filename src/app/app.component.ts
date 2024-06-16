@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './Services/auth.service';
 
+import {} from '@fortawesome/fontawesome-svg-core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
