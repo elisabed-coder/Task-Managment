@@ -16,7 +16,6 @@ export class HeaderComponent implements OnInit {
   faDoorClosed = faWindowClose;
   isLoggedIn: boolean = false;
   isMenuOpen: boolean = false;
-  //good practise to unsubscribe the subject
   private userSubject!: Subscription;
   constructor(private authService: AuthService) {}
 
@@ -28,8 +27,10 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
+    //good practise to unsubscribe the subject
     this.userSubject.unsubscribe();
   }
+
   logOut() {
     this.authService.logOut();
   }

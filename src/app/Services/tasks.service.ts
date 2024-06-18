@@ -1,6 +1,6 @@
-import { Injectable, ɵgetUnknownPropertyStrictMode } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { map, exhaustMap, take, Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { Task } from '../Model/Task';
 import { Comment } from '../Model/comment';

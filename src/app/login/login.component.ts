@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   isLoading: boolean = false;
 
   errorMessage: string | null = null;
+
   authObs!: Observable<AuthResponse>;
 
   onSwitchMode() {

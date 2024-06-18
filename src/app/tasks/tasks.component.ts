@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../Services/auth.service';
-import { Observable, exhaustMap, from, of, take } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { User } from '../Model/User';
-import { NgForm } from '@angular/forms';
+import { take } from 'rxjs';
 import { TaskService } from '../Services/tasks.service';
 import { Task } from '../Model/Task';
 import { Router } from '@angular/router';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPenSquare } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 @Component({

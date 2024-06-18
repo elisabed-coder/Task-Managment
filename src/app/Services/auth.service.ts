@@ -3,14 +3,13 @@ import { Injectable } from '@angular/core';
 import { AuthResponse } from '../Model/AuthResponse';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { User } from '../Model/User';
-import { Route, Router } from '@angular/router';
-import { TaskService } from './tasks.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  //one extra feature which behavioralsubject provcies is that also gives aus previous emitted data, so we'll also have access to previously emitted data
+  //one extra feature which behavioralsubject provcies is that also gives us previous emitted data, so we'll also have access to previously emitted data
   user = new BehaviorSubject<User | null>(null);
 
   constructor(private http: HttpClient, private router: Router) {}
@@ -122,9 +121,6 @@ export class AuthService {
       case 'INVALID_LOGIN_CREDENTIALS':
         errorMessage = 'The email ID or Password is not correct.';
         break;
-      // case 'INVALID_LOGIN_CREDENTIALS':
-      //   errorMessage = 'The email ID or Password is not correct';
-      //   break;
     }
     return throwError(() => errorMessage);
   }

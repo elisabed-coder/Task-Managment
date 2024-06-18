@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Task } from 'src/app/Model/Task';
 import { AuthService } from 'src/app/Services/auth.service';
 import { take } from 'rxjs';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
