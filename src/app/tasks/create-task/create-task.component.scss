@@ -5,13 +5,65 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.7);
+  color: #000000;
+  .popup {
+    margin: 30px auto;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    width: 40%;
+    position: relative;
+    fa-icon {
+      font-size: 28px;
+      cursor: pointer;
+    }
+  }
 }
 
-.popup {
-  margin: 30px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 5px;
-  width: 40%;
-  position: relative;
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  h2 {
+    font-weight: 600;
+    font-size: 24px;
+  }
+}
+
+form,
+.input-box,
+.select-box {
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  gap: 20px;
+  input {
+    border: 2px solid #c0c5cd;
+  }
+  #name {
+    padding: 10px;
+  }
+
+  #status,
+  #priority {
+    padding: 5px;
+  }
+
+  #description {
+    resize: none;
+    padding: 10px;
+  }
+  .create-task-btn {
+    width: 180px;
+    height: 50px;
+    border-radius: 20px;
+    background: #132743;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    align-self: center;
+  }
 }

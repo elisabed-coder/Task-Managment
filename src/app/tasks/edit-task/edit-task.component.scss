@@ -1,0 +1,137 @@
+section {
+  color: black;
+  padding: 50px;
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    height: 80%;
+  }
+  .taskDetails {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 16px;
+    .goBack {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: transparent;
+      font-size: 18px;
+      font-weight: 600;
+      gap: 5px;
+      fa-icon {
+        font-size: 24px;
+      }
+    }
+    p,
+    h2 {
+      font-weight: 200;
+      padding-top: 10px;
+      span {
+        font-weight: 500;
+      }
+    }
+  }
+
+  hr {
+    border: 1px solid#7c22ac;
+    margin-bottom: 10px;
+  }
+  div select {
+    font-weight: 700;
+    border: 2px solid #590d82;
+    color: #590d82;
+    margin-left: 10px;
+    font-size: 18px;
+  }
+  option:hover {
+    color: #590d82;
+  }
+}
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 30px;
+  h3 {
+    font-weight: 600;
+    font-size: 22px;
+  }
+  .comments {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 300px; /* Set the height as needed */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-right: 10px; /* Space for scrollbar */
+    scrollbar-color: #fff #590d82;
+    > div {
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      div {
+        display: flex;
+        align-items: baseline;
+        justify-content: flex-start;
+        gap: 30px;
+
+        h4 {
+          font-weight: 700;
+        }
+        p {
+          color: rgb(83, 82, 82);
+        }
+      }
+    }
+  }
+
+  .add-comment {
+    display: flex;
+    flex-direction: column;
+    form {
+      display: flex;
+      gap: 10px;
+      textarea {
+        padding: 15px;
+        resize: none;
+        border: 2px solid #590d82;
+        border-radius: 5px;
+      }
+
+      textarea:focus-visible {
+        outline: 1px solid #590d82;
+      }
+
+      button {
+        padding: 15px;
+        background-color: #590d82;
+        color: #fff;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 600;
+        transition: all 0.4s ease;
+      }
+      button:hover {
+        background-color: #7c22ac;
+      }
+    }
+  }
+}
+
+.saveChangees {
+  padding: 8px;
+  background-color: #590d82;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.4s ease;
+  margin-left: 10px;
+}
+.saveChangees:hover {
+  background-color: #7c22ac;
+}

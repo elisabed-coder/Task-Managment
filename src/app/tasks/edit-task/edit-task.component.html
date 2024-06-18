@@ -1,41 +1,71 @@
-<button (click)="goBack()">Go Back to Tasks</button>
-<div *ngIf="task">
-  <p>Task:{{ task.name }}</p>
-  <p>author:{{ task.author }}</p>
-  <p>Description:{{ task.description }}</p>
-  <p>priority:{{ task.priority }}</p>
-  <p>status:{{ task.status }}</p>
-  <label for="status">Change Status:</label>
-  <select id="status" [(ngModel)]="task.status">
-    <option value="open">Open</option>
-    <option value="started">Started</option>
-    <option value="in-progress">In Progress</option>
-    <option value="complete">Completed</option>
-  </select>
-  <button (click)="updateTaskStatus()">Save the Changes</button>
-</div>
-
-<div class="add-comment">
-  <h3>Add Comment</h3>
-  <form (ngSubmit)="onAddComment()">
-    <textarea [(ngModel)]="commentText" name="comment" required></textarea>
-    <button type="submit">Add Comment</button>
-  </form>
-</div>
-
-<div class="comments" *ngIf="task && task.commentsArray">
-  <h3>Comments</h3>
-  <div *ngFor="let comment of task.commentsArray">
-    <p>
-      {{ comment.text }} by {{ comment.author }} on
-      {{ comment.date | date }}
-    </p>
+<section>
+  <div class="wrapper" *ngIf="task">
+    <div class="taskDetails">
+      <button (click)="goBack()" class="goBack">
+        <fa-icon [icon]="faCaretLeft"></fa-icon>BACK
+      </button>
+      <h2>
+        Title:<span>{{ task.name }}</span>
+      </h2>
+      <p>
+        author: <span>{{ task.author }}</span>
+      </p>
+      <p>
+        Description: <span>{{ task.description }}</span>
+      </p>
+      <p>
+        priority: <span>{{ task.priority }}</span>
+      </p>
+      <p>
+        status: <span>{{ task.status }}</span>
+      </p>
+      <hr />
+      <div>
+        <label for="status">Change Status:</label>
+        <select id="status" [(ngModel)]="task.status">
+          <option value="open">Open</option>
+          <option value="started">Started</option>
+          <option value="in-progress">In Progress</option>
+          <option value="complete">Completed</option>
+        </select>
+        <button (click)="updateTaskStatus()" class="saveChangees">
+          Save the Changes
+        </button>
+      </div>
+    </div>
+    <div class="comment-section">
+      <div class="comments" *ngIf="task && task.commentsArray">
+        <h3>Comment Section</h3>
+        <p *ngIf="task.commentsArray.length < 1">No Comment</p>
+        <div *ngFor="let comment of task.commentsArray">
+          <div>
+            <h4>{{ comment.author }}</h4>
+            <p>{{ comment.date | date }}</p>
+          </div>
+          <p>{{ comment.text }} by on</p>
+        </div>
+      </div>
+      <div class="add-comment">
+        <h3>Add Comment</h3>
+        <form (ngSubmit)="onAddComment()">
+          <textarea
+            [(ngModel)]="commentText"
+            name="comment"
+            required
+            placeholder="Add Comment..."
+            rows="2"
+            cols="50"
+          ></textarea>
+          <button type="submit">SEND</button>
+        </form>
+      </div>
+    </div>
   </div>
-</div>
-<div *ngIf="!task">
-  <app-loader></app-loader>
-</div>
-<app-action
-  [consoleMessage]="consoleMessage"
-  *ngIf="showConsoleMessage"
-></app-action>
+  <div *ngIf="!task">
+    <app-loader></app-loader>
+  </div>
+  <app-action
+    [consoleMessage]="consoleMessage"
+    *ngIf="showConsoleMessage"
+  ></app-action>
+</section>

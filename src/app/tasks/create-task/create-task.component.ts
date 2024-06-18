@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { Task } from 'src/app/Model/Task';
 import { AuthService } from 'src/app/Services/auth.service';
 import { take } from 'rxjs';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-create-task',
@@ -10,6 +12,7 @@ import { take } from 'rxjs';
   styleUrls: ['./create-task.component.scss'],
 })
 export class CreateTaskComponent implements OnInit {
+  faWindowClose = faWindowClose;
   @Output()
   EmitTaskData: EventEmitter<Task> = new EventEmitter<Task>();
 

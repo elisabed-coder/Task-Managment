@@ -15,25 +15,26 @@
       <div style="text-align: center" *ngIf="filteredTasks.length < 1">
         <h2>No task has been created yet!</h2>
       </div>
-      <div
-        *ngFor="let task of filteredTasks"
-        class="task-box"
-        [ngClass]="'task-' + task.status"
-      >
-        <h2>{{ task.name }}</h2>
-        <hr />
-        <div>
-          <p><span>created by: </span>{{ task.author }}</p>
-          <p><span>status: </span>{{ task.status }}</p>
-          <p><span>date:</span> {{ task.date }}</p>
-        </div>
-        <div class="fa-icons">
-          <fa-icon
-            [icon]="faPen"
-            (click)="OnEditTaskClicked(task.id)"
-            class="faPen"
-          ></fa-icon>
-          <fa-icon [icon]="faTrash" (click)="DeleTeTask(task.id)"></fa-icon>
+      <div class="task-box">
+        <div
+          *ngFor="let task of filteredTasks"
+          [ngClass]="'task-' + task.status"
+        >
+          <h2>{{ task.name }}</h2>
+          <hr />
+          <div>
+            <p><span>created by: </span>{{ task.author }}</p>
+            <p><span>status: </span>{{ task.status }}</p>
+            <p><span>date:</span> {{ task.date }}</p>
+          </div>
+          <div class="fa-icons">
+            <fa-icon
+              [icon]="faPen"
+              (click)="OnEditTaskClicked(task.id)"
+              class="faPen"
+            ></fa-icon>
+            <fa-icon [icon]="faTrash" (click)="DeleTeTask(task.id)"></fa-icon>
+          </div>
         </div>
       </div>
       <div class="filterbox">
@@ -44,7 +45,7 @@
           <option value="in-progress">In Progress</option>
           <option value="complete">Complete</option>
         </select>
-        <button>FILTER</button>
+        <!-- <button>FILTER</button> -->
         <span
           >{{ selectedStatus === "" ? "All" : selectedStatus }}
           {{ filteredTaskCount }}</span

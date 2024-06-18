@@ -4,6 +4,7 @@ import { take } from 'rxjs';
 import { AuthService } from 'src/app/Services/auth.service';
 import { TaskService } from 'src/app/Services/tasks.service';
 import { Comment } from 'src/app/Model/comment';
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-edit-task',
@@ -11,6 +12,7 @@ import { Comment } from 'src/app/Model/comment';
   styleUrls: ['./edit-task.component.scss'],
 })
 export class EditTaskComponent implements OnInit {
+  faCaretLeft = faCaretLeft;
   taskId!: string | null;
   task: any;
   commentText: string = '';
