@@ -1,27 +1,5 @@
-# Registration
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.13.
-
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![Screenshot 2024-06-18 083402](https://github.com/elisabed-coder/Task-Managment/assets/134492535/d1166b47-be6b-4fd6-b560-d0c99189e01d)
+![Screenshot 2024-06-18 083423](https://github.com/elisabed-coder/Task-Managment/assets/134492535/9eec92a3-2c45-485a-b253-8f991c1d6d74)
+![Screenshot 2024-06-18 083442](https://github.com/elisabed-coder/Task-Managment/assets/134492535/ec4ab07f-4bb6-4ff1-be63-45456f152c82)
+![Screenshot 2024-06-18 083052](https://github.com/elisabed-coder/Task-Managment/assets/134492535/76e7d1c3-ff24-4dd1-aa13-cde7cde6ff86)
+![Screenshot 2024-06-18 083314](https://github.com/elisabed-coder/Task-Managment/assets/134492535/ea638c83-1b30-4692-ba90-4d967e6c6f90)
