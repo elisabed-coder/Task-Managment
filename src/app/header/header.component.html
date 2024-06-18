@@ -1,7 +1,17 @@
 <header>
   <nav>
     <h1>Task Managment</h1>
-    <div>
+    <fa-icon
+      *ngIf="!isMenuOpen"
+      [icon]="faBars"
+      (click)="toggleMenu()"
+    ></fa-icon>
+    <fa-icon
+      *ngIf="isMenuOpen"
+      [icon]="faDoorClosed"
+      (click)="toggleMenu()"
+    ></fa-icon>
+    <div [class.menu-open]="isMenuOpen">
       <a routerLink="/">HOME</a>
       <a routerLink="/Tasks" *ngIf="isLoggedIn">TASKS</a>
       <a routerLink="/login" *ngIf="!isLoggedIn">LOGIN</a>

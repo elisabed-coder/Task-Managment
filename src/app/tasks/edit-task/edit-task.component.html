@@ -33,6 +33,7 @@
         </button>
       </div>
     </div>
+    <hr class="section-divider" />
     <div class="comment-section">
       <div class="comments" *ngIf="task && task.commentsArray">
         <h3>Comment Section</h3>
@@ -42,7 +43,7 @@
             <h4>{{ comment.author }}</h4>
             <p>{{ comment.date | date }}</p>
           </div>
-          <p>{{ comment.text }} by on</p>
+          <p>{{ comment.text }}</p>
         </div>
       </div>
       <div class="add-comment">

@@ -3,6 +3,8 @@ import { AuthResponse } from '../Model/AuthResponse';
 import { AuthService } from '../Services/auth.service';
 import { User } from '../Model/User';
 import { Subscription } from 'rxjs';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-header',
@@ -10,8 +12,10 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  faBars = faBars;
+  faDoorClosed = faWindowClose;
   isLoggedIn: boolean = false;
-
+  isMenuOpen: boolean = false;
   //good practise to unsubscribe the subject
   private userSubject!: Subscription;
   constructor(private authService: AuthService) {}
@@ -28,5 +32,9 @@ export class HeaderComponent implements OnInit {
   }
   logOut() {
     this.authService.logOut();
+  }
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
   }
 }

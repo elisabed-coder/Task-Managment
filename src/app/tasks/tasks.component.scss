@@ -29,7 +29,7 @@
     gap: 20px;
     > div {
       width: 275px;
-      height: 225px;
+      // height: 225px;
       box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
         rgba(0, 0, 0, 0.23) 0px 3px 6px;
       background: #fff;
@@ -98,4 +98,13 @@
 
 .task-complete {
   border-top: 10px solid #41a06f;
+}
+
+@media (max-width: 660px) {
+  .task-box {
+    flex-direction: column;
+  }
+  .filterbox {
+    margin-bottom: 10px;
+  }
 }

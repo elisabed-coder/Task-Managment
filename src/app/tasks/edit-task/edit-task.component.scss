@@ -5,8 +5,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 100px;
-    height: 80%;
+    gap: 60px;
   }
   .taskDetails {
     background-color: #fff;
@@ -134,4 +133,35 @@ section {
 }
 .saveChangees:hover {
   background-color: #7c22ac;
+}
+
+@media (max-width: 1200px) {
+  section {
+    padding: 20px;
+    .wrapper {
+      gap: 20px;
+    }
+  }
+  .saveChangees {
+    margin-left: 2px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .saveChangees {
+    margin-top: 5px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .wrapper {
+    flex-direction: column;
+    align-content: left;
+  }
+}
+
+@media (max-width: 550px) {
+  .comment-section {
+    max-width: 90%;
+  }
 }
